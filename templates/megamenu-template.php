@@ -200,15 +200,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 			</li>
 			
-			<!-- Kit Builder Link -->
-			<li class="cg-woodivi-nav-item cg-woodivi-custom-link">
-				<a href="#" class="cg-woodivi-nav-link btn-orange"><?php esc_html_e( 'KIT BUILDER', 'cg-woodivi-category-brand-megamenu' ); ?></a>
-			</li>
-			
-			<!-- Offers Link -->
-			<li class="cg-woodivi-nav-item cg-woodivi-custom-link">
-				<a href="#" class="cg-woodivi-nav-link btn-red"><?php esc_html_e( 'OFFERS', 'cg-woodivi-category-brand-megamenu' ); ?></a>
-			</li>
+
 			
 		</ul>
 
@@ -297,13 +289,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</ul>
 				</li>
 
-				<!-- Mobile Custom Links -->
-				<li class="cg-woodivi-mobile-item">
-					<a href="#" class="cg-woodivi-mobile-link mob-btn-orange"><?php esc_html_e( 'KIT BUILDER', 'cg-woodivi-category-brand-megamenu' ); ?></a>
-				</li>
-				<li class="cg-woodivi-mobile-item">
-					<a href="#" class="cg-woodivi-mobile-link mob-btn-red"><?php esc_html_e( 'OFFERS', 'cg-woodivi-category-brand-megamenu' ); ?></a>
-				</li>
+
 
 			</ul>
 		</div>

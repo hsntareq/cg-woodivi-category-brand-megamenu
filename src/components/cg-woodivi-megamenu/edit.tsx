@@ -30,12 +30,11 @@ export const CGWooDiviMegamenuEdit = (props: CGWooDiviMegamenuEditProps): ReactE
       <div 
         className="cg-woodivi-megamenu-vb-placeholder"
         style={{
-          width: '100%',
+          width: 'auto',
           fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
           backgroundColor: '#1c2b39',
           color: '#ffffff',
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: 'inline-flex',
           alignItems: 'center',
           padding: '0 15px',
           height: '50px',
@@ -53,15 +52,6 @@ export const CGWooDiviMegamenuEdit = (props: CGWooDiviMegamenuEditProps): ReactE
           </div>
           <div style={{ fontSize: '11px', color: '#8b9da9', fontStyle: 'italic', marginLeft: '10px' }}>
             (Visual Builder Preview Mode)
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <div style={{ backgroundColor: '#ff8c00', color: '#ffffff', padding: '8px 16px', fontSize: '12px', fontWeight: 700, borderRadius: '3px', textTransform: 'uppercase', cursor: 'default' }}>
-            KIT BUILDER
-          </div>
-          <div style={{ backgroundColor: '#e60000', color: '#ffffff', padding: '8px 16px', fontSize: '12px', fontWeight: 700, borderRadius: '3px', textTransform: 'uppercase', cursor: 'default' }}>
-            OFFERS
           </div>
         </div>
       </div>

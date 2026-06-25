@@ -4,6 +4,39 @@ const initMegamenu = () => {
   const $ = (window as any).jQuery;
   if (!$) return;
 
+  const positionDropdown = ($item: any) => {
+    const $panel = $item.find('.cg-woodivi-dropdown-panel');
+    if (!$panel.length) return;
+
+    const $wrapper = $item.closest('.cg-woodivi-megamenu-wrapper');
+    if (!$wrapper.length) return;
+
+    let $target = $wrapper.closest('.et_pb_row');
+    if (!$target.length) {
+      $target = $wrapper.closest('.et_pb_column');
+    }
+    if (!$target.length) {
+      $target = $wrapper.closest('.et_pb_section');
+    }
+
+    if ($target.length) {
+      const targetWidth = $target.outerWidth();
+      const targetLeft = $target.offset().left;
+      const wrapperLeft = $wrapper.offset().left;
+      const offsetLeft = targetLeft - wrapperLeft;
+
+      $panel.css({
+        width: `${targetWidth}px`,
+        left: `${offsetLeft}px`
+      });
+    } else {
+      $panel.css({
+        width: `${$wrapper.outerWidth()}px`,
+        left: '0px'
+      });
+    }
+  };
+
   // Initialize Desktop Megamenu interactions
   const initDesktopMegamenu = () => {
     // Click handler for main navigation dropdowns
@@ -18,6 +51,10 @@ const initMegamenu = () => {
       
       // Toggle active class on clicked dropdown
       $item.toggleClass('active');
+
+      if ($item.hasClass('active')) {
+        positionDropdown($item);
+      }
 
       // Toggle body class
       if ($('.cg-woodivi-nav-item.has-dropdown.active').length > 0) {
@@ -38,6 +75,13 @@ const initMegamenu = () => {
     // Prevent clicks inside the dropdown panels from closing the menu
     $('.cg-woodivi-dropdown-panel').on('click', function(e: any) {
       e.stopPropagation();
+    });
+
+    // Position active dropdowns on window resize
+    $(window).on('resize', function() {
+      $('.cg-woodivi-nav-item.has-dropdown.active').each(function(this: HTMLElement) {
+        positionDropdown($(this));
+      });
     });
 
     // Hover handler for sidebar items to switch content panels
