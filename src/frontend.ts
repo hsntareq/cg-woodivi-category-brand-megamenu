@@ -8,6 +8,15 @@ const initMegamenu = () => {
     const $panel = $item.find('.cg-woodivi-dropdown-panel');
     if (!$panel.length) return;
 
+    if (window.innerWidth <= 980) {
+      // Reset layout positioning on mobile to let CSS handle inline accordion flow
+      $panel.css({
+        width: '',
+        left: ''
+      });
+      return;
+    }
+
     const $wrapper = $item.closest('.cg-woodivi-megamenu-wrapper');
     if (!$wrapper.length) return;
 
@@ -37,9 +46,8 @@ const initMegamenu = () => {
     }
   };
 
-  // Initialize Desktop Megamenu interactions
   const initDesktopMegamenu = () => {
-    // Click handler for main navigation dropdowns
+    // Click handler for main navigation dropdowns (both desktop and mobile)
     $('.cg-woodivi-nav-item.has-dropdown > .cg-woodivi-nav-link').on('click', function(this: HTMLElement, e: any) {
       e.preventDefault();
       e.stopPropagation();
@@ -84,8 +92,13 @@ const initMegamenu = () => {
       });
     });
 
-    // Hover handler for sidebar items to switch content panels
-    $('.cg-woodivi-sidebar-item').on('mouseenter', function(this: HTMLElement) {
+    // Hover or click handler for sidebar items (works for mouseover on desktop and click/tap on touch devices)
+    $('.cg-woodivi-sidebar-item').on('mouseenter click', function(this: HTMLElement, e: any) {
+      if (e.type === 'click') {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
       const $item = $(this);
       const parentId = $item.data('id');
       const $container = $item.closest('.cg-woodivi-dropdown-container');
@@ -101,52 +114,7 @@ const initMegamenu = () => {
     });
   };
 
-  // Initialize Mobile drawer and accordions
-  const initMobileMegamenu = () => {
-    const $trigger = $('.cg-woodivi-mobile-trigger');
-    const $drawer  = $('.cg-woodivi-mobile-drawer');
-    const $overlay = $('.cg-woodivi-mobile-overlay');
-    const $close    = $('.cg-woodivi-mobile-close');
-
-    if ($drawer.length > 0) {
-      // Move drawer and overlay to body to escape parent stacking contexts
-      $('body').append($drawer).append($overlay);
-    }
-
-    // Open Drawer
-    $trigger.on('click', function() {
-      $drawer.addClass('active');
-      $overlay.addClass('active');
-      $('body').css('overflow', 'hidden'); // Prevent background scrolling
-    });
-
-    // Close Drawer
-    const closeDrawer = () => {
-      $drawer.removeClass('active');
-      $overlay.removeClass('active');
-      $('body').css('overflow', '');
-    };
-
-    $close.on('click', closeDrawer);
-    $overlay.on('click', closeDrawer);
-
-    // Mobile Accordion Toggle
-    $('.cg-woodivi-mobile-link.toggle-accordion').on('click', function(this: HTMLElement, e: any) {
-      e.preventDefault();
-      const $link = $(this);
-      const $parent = $link.parent();
-      const $content = $link.next('.cg-woodivi-mobile-accordion-content');
-
-      $parent.toggleClass('open');
-      $content.slideToggle(300);
-
-      // Collapse other open accordions in the mobile menu
-      $('.cg-woodivi-mobile-item.has-accordion').not($parent).removeClass('open').find('.cg-woodivi-mobile-accordion-content').slideUp(300);
-    });
-  };
-
   initDesktopMegamenu();
-  initMobileMegamenu();
 };
 
 if (document.readyState === 'loading') {
