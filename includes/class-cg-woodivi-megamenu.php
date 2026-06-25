@@ -187,6 +187,19 @@ class Plugin {
 					),
 				)
 			);
+
+			\ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
+				array(
+					'name'    => 'cg-woodivi-megamenu-builder-style',
+					'version' => CG_WOODIVI_MEGAMENU_VERSION,
+					'style'  => array(
+						'src'                => CG_WOODIVI_MEGAMENU_URL . 'assets/css/megamenu.css',
+						'deps'               => array(),
+						'enqueue_top_window' => true,
+						'enqueue_app_window' => true,
+					),
+				)
+			);
 		}
 	}
 
