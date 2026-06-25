@@ -56,6 +56,7 @@ class Plugin {
 
 		// Divi Integration
 		add_action( 'et_builder_ready', array( $this, 'load_divi_module' ), 5 );
+		add_action( 'divi_module_library_modules_dependency_tree', array( $this, 'register_divi5_dependency' ) );
 
 		// Admin Menu
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
@@ -145,6 +146,21 @@ class Plugin {
 	public function load_divi_module() {
 		if ( class_exists( 'ET_Builder_Module' ) ) {
 			require_once CG_WOODIVI_MEGAMENU_PATH . 'includes/class-cg-woodivi-divi-module.php';
+		}
+	}
+
+	/**
+	 * Register native Divi 5 module dependency
+	 *
+	 * @param object $dependency_tree Divi 5 dependency tree.
+	 * @return void
+	 */
+	public function register_divi5_dependency( $dependency_tree ) {
+		// Load Divi 5 module registration class only when Divi 5 is loading dependencies
+		require_once CG_WOODIVI_MEGAMENU_PATH . 'includes/class-cg-woodivi-megamenu-module.php';
+
+		if ( class_exists( 'CGWooDiviMegamenu\CGWooDiviMegamenuModule' ) ) {
+			$dependency_tree->add_dependency( new CGWooDiviMegamenuModule() );
 		}
 	}
 

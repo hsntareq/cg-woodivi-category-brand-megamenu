@@ -1,0 +1,21 @@
+{
+  "name": "cg-woodivi-megamenu/cg-woodivi-megamenu",
+  "title": "CG WooDivi Megamenu",
+  "moduleIcon": "divi/module-menu",
+  "category": "module",
+  "attributes": {
+    "module": {
+      "type": "object",
+      "selector": "{{selector}}",
+      "settings": {
+        "advanced": {},
+        "decoration": {}
+      }
+    }
+  },
+  "settings": {
+    "content": "auto",
+    "design": "auto",
+    "advanced": "auto"
+  }
+}
