@@ -26,12 +26,20 @@
 			
 			// Toggle active class on clicked dropdown
 			$item.toggleClass('active');
+
+			// Toggle body class
+			if ($('.cg-woodivi-nav-item.has-dropdown.active').length > 0) {
+				$('body').addClass('cg-woodivi-menu-active');
+			} else {
+				$('body').removeClass('cg-woodivi-menu-active');
+			}
 		});
 
 		// Close dropdowns when clicking outside the menu wrapper
 		$(document).on('click', function(e) {
 			if (!$(e.target).closest('.cg-woodivi-megamenu-wrapper').length) {
 				$('.cg-woodivi-nav-item.has-dropdown').removeClass('active');
+				$('body').removeClass('cg-woodivi-menu-active');
 			}
 		});
 

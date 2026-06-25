@@ -562,3 +562,19 @@
 	display: inline-block;
 	margin: 10px 0;
 }
+
+/* Stacking Context fixes for Divi Section/Row/Column ancestors containing the active megamenu */
+body.cg-woodivi-menu-active .et_pb_section:has(.cg-woodivi-nav-item.active),
+body.cg-woodivi-menu-active .et_pb_row:has(.cg-woodivi-nav-item.active),
+body.cg-woodivi-menu-active .et_pb_column:has(.cg-woodivi-nav-item.active),
+body.cg-woodivi-menu-active .et_pb_module:has(.cg-woodivi-nav-item.active),
+body.cg-woodivi-menu-active #main-header,
+body.cg-woodivi-menu-active .et-main-header,
+body.cg-woodivi-menu-active header,
+.et_pb_section:has(.cg-woodivi-nav-item.active),
+.et_pb_row:has(.cg-woodivi-nav-item.active),
+.et_pb_column:has(.cg-woodivi-nav-item.active),
+.et_pb_module:has(.cg-woodivi-nav-item.active) {
+	z-index: 99999999 !important;
+	overflow: visible !important;
+}
