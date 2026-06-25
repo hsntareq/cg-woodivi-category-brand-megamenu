@@ -28,6 +28,38 @@ export const ModuleStyles = ({
         },
       })}
 
+      {elements.style({
+        attrName: 'navbar',
+      })}
+
+      {elements.style({
+        attrName: 'navLinks',
+      })}
+
+      {elements.style({
+        attrName: 'dropdownPanel',
+      })}
+
+      {elements.style({
+        attrName: 'sidebar',
+      })}
+
+      {elements.style({
+        attrName: 'sidebarLinks',
+      })}
+
+      {elements.style({
+        attrName: 'contentPanel',
+      })}
+
+      {elements.style({
+        attrName: 'sublistLinks',
+      })}
+
+      {elements.style({
+        attrName: 'ctaButton',
+      })}
+
       <CssStyle
         selector={orderClass}
         attr={attrs.css}

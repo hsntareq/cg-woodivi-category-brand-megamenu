@@ -41,6 +41,126 @@
           "sticky": {}
         }
       }
+    },
+    "navbar": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-navbar",
+      "settings": {
+        "decoration": {
+          "background": {},
+          "border": {},
+          "spacing": {},
+          "boxShadow": {}
+        }
+      }
+    },
+    "navLinks": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-nav-link",
+      "settings": {
+        "decoration": {
+          "font": {
+            "component": {
+              "props": {
+                "groupLabel": "Main Menu Link Text",
+                "fieldLabel": "Link"
+              }
+            }
+          },
+          "background": {},
+          "border": {},
+          "spacing": {}
+        }
+      }
+    },
+    "dropdownPanel": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-dropdown-panel",
+      "settings": {
+        "decoration": {
+          "background": {},
+          "border": {},
+          "spacing": {},
+          "boxShadow": {}
+        }
+      }
+    },
+    "sidebar": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-sidebar",
+      "settings": {
+        "decoration": {
+          "background": {},
+          "border": {},
+          "spacing": {}
+        }
+      }
+    },
+    "sidebarLinks": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-sidebar-item a",
+      "settings": {
+        "decoration": {
+          "font": {
+            "component": {
+              "props": {
+                "groupLabel": "Sidebar Link Text",
+                "fieldLabel": "Sidebar Link"
+              }
+            }
+          },
+          "background": {},
+          "border": {},
+          "spacing": {}
+        }
+      }
+    },
+    "contentPanel": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-content-panels",
+      "settings": {
+        "decoration": {
+          "background": {},
+          "border": {},
+          "spacing": {}
+        }
+      }
+    },
+    "sublistLinks": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-sublist-item a",
+      "settings": {
+        "decoration": {
+          "font": {
+            "component": {
+              "props": {
+                "groupLabel": "Submenu Link Text",
+                "fieldLabel": "Submenu Link"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ctaButton": {
+      "type": "object",
+      "selector": "{{selector}} .cg-woodivi-cta-btn",
+      "settings": {
+        "decoration": {
+          "font": {
+            "component": {
+              "props": {
+                "groupLabel": "CTA Button Text",
+                "fieldLabel": "CTA Button"
+              }
+            }
+          },
+          "background": {},
+          "border": {},
+          "spacing": {},
+          "boxShadow": {}
+        }
+      }
     }
   },
   "settings": {
