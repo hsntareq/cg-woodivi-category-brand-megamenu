@@ -578,3 +578,22 @@ body.cg-woodivi-menu-active header,
 	z-index: 99999999 !important;
 	overflow: visible !important;
 }
+
+/* Force disable all list markers/bullets globally for our megamenu wrapper */
+.cg-woodivi-megamenu-wrapper ul,
+.cg-woodivi-megamenu-wrapper li,
+.cg-woodivi-megamenu-wrapper ul.cg-woodivi-nav-list,
+.cg-woodivi-megamenu-wrapper ul.cg-woodivi-sidebar-list,
+.cg-woodivi-megamenu-wrapper ul.cg-woodivi-sublist {
+	list-style: none !important;
+	list-style-type: none !important;
+	margin: 0;
+	padding: 0;
+}
+
+.cg-woodivi-megamenu-wrapper li::marker,
+.cg-woodivi-megamenu-wrapper ul::marker,
+.cg-woodivi-megamenu-wrapper li::before {
+	content: none !important;
+	display: none !important;
+}

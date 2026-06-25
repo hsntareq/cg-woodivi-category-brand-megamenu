@@ -118,7 +118,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<!-- Left Sidebar (Brands List) -->
 						<div class="cg-woodivi-sidebar">
 							<ul class="cg-woodivi-sidebar-list">
-								<li class="cg-woodivi-sidebar-header"><?php esc_html_e( 'TOP BRANDS', 'cg-woodivi-category-brand-megamenu' ); ?></li>
 								<?php 
 								$first_brand = true;
 								foreach ( $brands as $brand ) : 
