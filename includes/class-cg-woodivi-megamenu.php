@@ -55,7 +55,6 @@ class Plugin {
 		add_shortcode( 'cg_woodivi_megamenu', array( $this, 'render_megamenu_shortcode' ) );
 
 		// Divi Integration
-		add_action( 'et_builder_ready', array( $this, 'load_divi_module' ), 5 );
 		add_action( 'divi_module_library_modules_dependency_tree', array( $this, 'register_divi5_dependency' ) );
 
 		// Admin Menu
@@ -140,14 +139,7 @@ class Plugin {
 		);
 	}
 
-	/**
-	 * Load Classic Divi module
-	 */
-	public function load_divi_module() {
-		if ( class_exists( 'ET_Builder_Module' ) ) {
-			require_once CG_WOODIVI_MEGAMENU_PATH . 'includes/class-cg-woodivi-divi-module.php';
-		}
-	}
+
 
 	/**
 	 * Register native Divi 5 module dependency
