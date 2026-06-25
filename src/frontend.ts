@@ -108,6 +108,11 @@ const initMegamenu = () => {
     const $overlay = $('.cg-woodivi-mobile-overlay');
     const $close    = $('.cg-woodivi-mobile-close');
 
+    if ($drawer.length > 0) {
+      // Move drawer and overlay to body to escape parent stacking contexts
+      $('body').append($drawer).append($overlay);
+    }
+
     // Open Drawer
     $trigger.on('click', function() {
       $drawer.addClass('active');
