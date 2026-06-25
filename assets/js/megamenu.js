@@ -14,32 +14,30 @@
 	 * Initialize Desktop Megamenu interactions
 	 */
 	function initDesktopMegamenu() {
-		var hoverTimeout;
+		// Click handler for main navigation dropdowns
+		$('.cg-woodivi-nav-item.has-dropdown > .cg-woodivi-nav-link').on('click', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			var $item = $(this).parent('.cg-woodivi-nav-item');
+			
+			// Deactivate other dropdowns
+			$('.cg-woodivi-nav-item.has-dropdown').not($item).removeClass('active');
+			
+			// Toggle active class on clicked dropdown
+			$item.toggleClass('active');
+		});
 
-		// Hover handler for main navigation dropdowns
-		$('.cg-woodivi-nav-item.has-dropdown').hover(
-			function() {
-				var $this = $(this);
-				clearTimeout(hoverTimeout);
-				
-				// Deactivate other dropdowns
-				$('.cg-woodivi-nav-item.has-dropdown').not($this).removeClass('active');
-				
-				$this.addClass('active');
-			},
-			function() {
-				var $this = $(this);
-				hoverTimeout = setTimeout(function() {
-					$this.removeClass('active');
-				}, 200); // Small delay to prevent accidental closures
+		// Close dropdowns when clicking outside the menu wrapper
+		$(document).on('click', function(e) {
+			if (!$(e.target).closest('.cg-woodivi-megamenu-wrapper').length) {
+				$('.cg-woodivi-nav-item.has-dropdown').removeClass('active');
 			}
-		);
+		});
 
-		// Prevent links on main dropdown triggers if they contain '#' or are meant only to open the menu
-		$('.toggle-dropdown').on('click', function(e) {
-			if ($(window).width() > 980) {
-				e.preventDefault();
-			}
+		// Prevent clicks inside the dropdown panels from closing the menu
+		$('.cg-woodivi-dropdown-panel').on('click', function(e) {
+			e.stopPropagation();
 		});
 
 		// Hover handler for sidebar items to switch content panels

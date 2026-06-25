@@ -47,7 +47,6 @@
 }
 
 .cg-woodivi-nav-item {
-	position: relative;
 	height: 100%;
 }
 
@@ -115,8 +114,7 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-	width: 100vw;
-	max-width: 1200px;
+	width: 100%;
 	background-color: var(--cg-content-bg);
 	box-shadow: var(--cg-shadow);
 	opacity: 0;
@@ -519,13 +517,13 @@
 @media screen and (min-width: 981px) {
 	/* Keep dropdown full width aligned with parent wrapper on desktop if inside narrow row */
 	.cg-woodivi-dropdown-panel {
-		width: 100vw;
-		left: 50%;
-		transform: translateX(-50%) translateY(15px);
+		width: 100%;
+		left: 0;
+		transform: translateY(15px);
 	}
 	
 	.cg-woodivi-nav-item.has-dropdown.active .cg-woodivi-dropdown-panel {
-		transform: translateX(-50%) translateY(0);
+		transform: translateY(0);
 	}
 }
 
