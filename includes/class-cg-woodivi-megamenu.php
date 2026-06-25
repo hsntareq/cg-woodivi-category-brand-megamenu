@@ -56,6 +56,7 @@ class Plugin {
 
 		// Divi Integration
 		add_action( 'divi_module_library_modules_dependency_tree', array( $this, 'register_divi5_dependency' ) );
+		add_action( 'divi_visual_builder_assets_before_enqueue_scripts', array( $this, 'enqueue_divi5_builder_assets' ) );
 
 		// Admin Menu
 		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
@@ -153,6 +154,39 @@ class Plugin {
 
 		if ( class_exists( 'CGWooDiviMegamenu\CGWooDiviMegamenuModule' ) ) {
 			$dependency_tree->add_dependency( new CGWooDiviMegamenuModule() );
+		}
+	}
+
+	/**
+	 * Enqueue Divi 5 Visual Builder Assets
+	 *
+	 * @return void
+	 */
+	public function enqueue_divi5_builder_assets() {
+		if (
+			function_exists( 'et_builder_d5_enabled' )
+			&& function_exists( 'et_core_is_fb_enabled' )
+			&& et_builder_d5_enabled()
+			&& et_core_is_fb_enabled()
+			&& class_exists( '\ET\Builder\VisualBuilder\Assets\PackageBuildManager' )
+		) {
+			\ET\Builder\VisualBuilder\Assets\PackageBuildManager::register_package_build(
+				array(
+					'name'    => 'cg-woodivi-megamenu-builder-script',
+					'version' => CG_WOODIVI_MEGAMENU_VERSION,
+					'script'  => array(
+						'src'                => CG_WOODIVI_MEGAMENU_URL . 'assets/js/builder-bundle.js',
+						'deps'               => array(
+							'lodash',
+							'divi-module-library',
+							'divi-vendor-wp-hooks',
+							'divi-module',
+						),
+						'enqueue_top_window' => true,
+						'enqueue_app_window' => true,
+					),
+				)
+			);
 		}
 	}
 
