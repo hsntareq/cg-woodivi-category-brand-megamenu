@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'CG_WOODIVI_MEGAMENU_VERSION', '1.0.1' );
+define( 'CG_WOODIVI_MEGAMENU_VERSION', '1.0.2' );
 define( 'CG_WOODIVI_MEGAMENU_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CG_WOODIVI_MEGAMENU_URL', plugin_dir_url( __FILE__ ) );
 define( 'CG_WOODIVI_MEGAMENU_BASENAME', plugin_basename( __FILE__ ) );

@@ -125,7 +125,7 @@ const initMegamenu = () => {
     $close.on('click', closeDrawer);
     $overlay.on('click', closeDrawer);
 
-    // Mobile Level 1 Accordion
+    // Mobile Accordion Toggle
     $('.cg-woodivi-mobile-link.toggle-accordion').on('click', function(this: HTMLElement, e: any) {
       e.preventDefault();
       const $link = $(this);
@@ -135,24 +135,8 @@ const initMegamenu = () => {
       $parent.toggleClass('open');
       $content.slideToggle(300);
 
-      // Collapse others at level 1
+      // Collapse other open accordions in the mobile menu
       $('.cg-woodivi-mobile-item.has-accordion').not($parent).removeClass('open').find('.cg-woodivi-mobile-accordion-content').slideUp(300);
-    });
-
-    // Mobile Level 2 Accordion
-    $('.toggle-sub-accordion').on('click', function(this: HTMLElement, e: any) {
-      const $link = $(this);
-      const $parent = $link.parent();
-      const $content = $link.next('.cg-woodivi-mobile-sub-accordion-content');
-
-      if ($content.length > 0) {
-        e.preventDefault();
-        $parent.toggleClass('open');
-        $content.slideToggle(300);
-        
-        // Collapse other sub-accordions within the same panel
-        $parent.siblings('.has-accordion').removeClass('open').find('.cg-woodivi-mobile-sub-accordion-content').slideUp(300);
-      }
     });
   };
 

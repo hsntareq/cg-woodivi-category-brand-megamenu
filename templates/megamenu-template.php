@@ -221,75 +221,66 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="cg-woodivi-mobile-drawer-body">
 			<ul class="cg-woodivi-mobile-nav">
 				
-				<!-- Mobile Category Accordion -->
-				<li class="cg-woodivi-mobile-item has-accordion">
-					<a href="#" class="cg-woodivi-mobile-link toggle-accordion">
-						<?php esc_html_e( 'SHOP BY CATEGORY', 'cg-woodivi-category-brand-megamenu' ); ?>
-						<span class="cg-mob-arrow">&#9662;</span>
-					</a>
-					<ul class="cg-woodivi-mobile-accordion-content">
-						<?php foreach ( $categories_tree as $parent_id => $data ) : 
-							$parent = $data['term'];
-							$children = $data['children'];
-							?>
-							<li class="cg-woodivi-mobile-sub-item <?php echo ! empty( $children ) ? 'has-accordion' : ''; ?>">
-								<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="toggle-sub-accordion">
-									<?php echo esc_html( $parent->name ); ?>
-									<?php if ( ! empty( $children ) ) : ?><span class="cg-mob-arrow">&#9662;</span><?php endif; ?>
-								</a>
-								<?php if ( ! empty( $children ) ) : ?>
-									<ul class="cg-woodivi-mobile-sub-accordion-content">
-										<?php foreach ( $children as $child ) : ?>
-											<li>
-												<a href="<?php echo esc_url( get_term_link( $child ) ); ?>">
-													<?php echo esc_html( $child->name ); ?>
-												</a>
-											</li>
-										<?php endforeach; ?>
-									</ul>
-								<?php endif; ?>
-							</li>
-						<?php endforeach; ?>
-					</ul>
+				<!-- Heading: SHOP BY CATEGORY -->
+				<li class="cg-woodivi-mobile-heading">
+					<?php esc_html_e( 'SHOP BY CATEGORY', 'cg-woodivi-category-brand-megamenu' ); ?>
 				</li>
 				
-				<!-- Mobile Brand Accordion -->
-				<li class="cg-woodivi-mobile-item has-accordion">
-					<a href="#" class="cg-woodivi-mobile-link toggle-accordion">
-						<?php esc_html_e( 'SHOP BY BRAND', 'cg-woodivi-category-brand-megamenu' ); ?>
-						<span class="cg-mob-arrow">&#9662;</span>
-					</a>
-					<ul class="cg-woodivi-mobile-accordion-content">
-						<?php foreach ( $brands as $brand ) : 
-							$brand_cats = \CGWooDiviMegamenu\Plugin::get_brand_categories( $brand->term_id );
-							?>
-							<li class="cg-woodivi-mobile-sub-item <?php echo ! empty( $brand_cats ) ? 'has-accordion' : ''; ?>">
-								<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="toggle-sub-accordion">
-									<?php echo esc_html( $brand->name ); ?>
-									<?php if ( ! empty( $brand_cats ) ) : ?><span class="cg-mob-arrow">&#9662;</span><?php endif; ?>
-								</a>
-								<?php if ( ! empty( $brand_cats ) ) : ?>
-									<ul class="cg-woodivi-mobile-sub-accordion-content">
-										<?php foreach ( $brand_cats as $cat ) : ?>
-											<li>
-												<a href="<?php echo esc_url( get_term_link( (int) $cat->term_id, 'product_cat' ) ); ?>?filter_brand=<?php echo esc_attr( $brand->slug ); ?>">
-													<?php echo esc_html( $cat->name ); ?>
-												</a>
-											</li>
-										<?php endforeach; ?>
-									</ul>
-								<?php endif; ?>
-							</li>
-						<?php endforeach; ?>
-						<li>
-							<a href="<?php echo esc_url( get_post_type_archive_link( 'product' ) ); ?>">
-								<strong><?php esc_html_e( 'SHOP ALL BRANDS', 'cg-woodivi-category-brand-megamenu' ); ?></strong>
-							</a>
-						</li>
-					</ul>
+				<?php foreach ( $categories_tree as $parent_id => $data ) : 
+					$parent = $data['term'];
+					$children = $data['children'];
+					?>
+					<li class="cg-woodivi-mobile-item <?php echo ! empty( $children ) ? 'has-accordion' : ''; ?>">
+						<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="cg-woodivi-mobile-link <?php echo ! empty( $children ) ? 'toggle-accordion' : ''; ?>">
+							<?php echo esc_html( $parent->name ); ?>
+							<?php if ( ! empty( $children ) ) : ?><span class="cg-mob-arrow">&#9662;</span><?php endif; ?>
+						</a>
+						<?php if ( ! empty( $children ) ) : ?>
+							<ul class="cg-woodivi-mobile-accordion-content">
+								<?php foreach ( $children as $child ) : ?>
+									<li>
+										<a href="<?php echo esc_url( get_term_link( $child ) ); ?>">
+											<?php echo esc_html( $child->name ); ?>
+										</a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+				
+				<!-- Heading: SHOP BY BRAND -->
+				<li class="cg-woodivi-mobile-heading">
+					<?php esc_html_e( 'SHOP BY BRAND', 'cg-woodivi-category-brand-megamenu' ); ?>
 				</li>
-
-
+				
+				<?php foreach ( $brands as $brand ) : 
+					$brand_cats = \CGWooDiviMegamenu\Plugin::get_brand_categories( $brand->term_id );
+					?>
+					<li class="cg-woodivi-mobile-item <?php echo ! empty( $brand_cats ) ? 'has-accordion' : ''; ?>">
+						<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="cg-woodivi-mobile-link <?php echo ! empty( $brand_cats ) ? 'toggle-accordion' : ''; ?>">
+							<?php echo esc_html( $brand->name ); ?>
+							<?php if ( ! empty( $brand_cats ) ) : ?><span class="cg-mob-arrow">&#9662;</span><?php endif; ?>
+						</a>
+						<?php if ( ! empty( $brand_cats ) ) : ?>
+							<ul class="cg-woodivi-mobile-accordion-content">
+								<?php foreach ( $brand_cats as $cat ) : ?>
+									<li>
+										<a href="<?php echo esc_url( get_term_link( (int) $cat->term_id, 'product_cat' ) ); ?>?filter_brand=<?php echo esc_attr( $brand->slug ); ?>">
+											<?php echo esc_html( $cat->name ); ?>
+										</a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+				
+				<li class="cg-woodivi-mobile-item cg-woodivi-mobile-all-brands">
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'product' ) ); ?>" class="cg-woodivi-mobile-link">
+						<strong><?php esc_html_e( 'SHOP ALL BRANDS', 'cg-woodivi-category-brand-megamenu' ); ?></strong>
+					</a>
+				</li>
 
 			</ul>
 		</div>

@@ -421,6 +421,22 @@
 	margin: 0;
 }
 
+.cg-woodivi-mobile-heading {
+	padding: 14px 20px 8px 20px;
+	color: var(--cg-accent);
+	font-size: 11px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	background-color: rgba(0, 0, 0, 0.15);
+	margin-top: 15px;
+}
+
+.cg-woodivi-mobile-heading:first-child {
+	margin-top: 0;
+}
+
 .cg-woodivi-mobile-item {
 	border-bottom: 1px solid rgba(255,255,255,0.03);
 }
@@ -429,22 +445,22 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 15px 20px;
+	padding: 14px 20px;
 	color: var(--cg-text-light);
 	text-decoration: none;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 600;
 	transition: var(--cg-transition);
 }
 
-.cg-woodivi-mobile-link:hover {
+.cg-woodivi-mobile-link:hover,
+.cg-woodivi-mobile-item.open > .cg-woodivi-mobile-link {
 	color: var(--cg-accent);
 	background-color: var(--cg-darker-bg);
 }
 
 /* Accordion Layout */
-.cg-woodivi-mobile-accordion-content,
-.cg-woodivi-mobile-sub-accordion-content {
+.cg-woodivi-mobile-accordion-content {
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -452,26 +468,19 @@
 	display: none;
 }
 
-.cg-woodivi-mobile-accordion-content .cg-woodivi-mobile-sub-item > a {
-	padding: 12px 30px;
-	color: rgba(255,255,255,0.8);
-	font-size: 13px;
-	display: flex;
-	justify-content: space-between;
-	text-decoration: none;
-}
-
-.cg-woodivi-mobile-sub-accordion-content li a {
-	padding: 10px 45px;
-	color: rgba(255,255,255,0.6);
+.cg-woodivi-mobile-accordion-content li a {
+	padding: 10px 30px;
+	color: rgba(255, 255, 255, 0.7);
 	font-size: 12px;
 	display: block;
 	text-decoration: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+	transition: var(--cg-transition);
 }
 
-.cg-woodivi-mobile-accordion-content li a:hover,
-.cg-woodivi-mobile-sub-accordion-content li a:hover {
+.cg-woodivi-mobile-accordion-content li a:hover {
 	color: var(--cg-accent);
+	padding-left: 35px;
 }
 
 .cg-mob-arrow {
@@ -479,8 +488,7 @@
 	transition: transform 0.2s ease;
 }
 
-.cg-woodivi-mobile-item.open > .cg-woodivi-mobile-link .cg-mob-arrow,
-.cg-woodivi-mobile-sub-item.open > .toggle-sub-accordion .cg-mob-arrow {
+.cg-woodivi-mobile-item.open > .cg-woodivi-mobile-link .cg-mob-arrow {
 	transform: rotate(180deg);
 }
 
