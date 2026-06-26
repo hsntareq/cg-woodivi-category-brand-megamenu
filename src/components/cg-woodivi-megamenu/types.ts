@@ -37,42 +37,42 @@ export interface CGWooDiviMegamenuAttrs extends InternalAttrs {
       'zIndex'
     >;
   };
-  navbar?: {
+  mainMenuBar?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing' | 'boxShadow'
     >;
   };
-  navLinks?: {
+  mainMenuBarLinks?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing' | 'font'
     >;
   };
-  dropdownPanel?: {
+  megamenuDropdownPanel?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing' | 'boxShadow'
     >;
   };
-  sidebar?: {
+  dropdownLeftSidebar?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing'
     >;
   };
-  sidebarLinks?: {
+  dropdownSidebarLinks?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing' | 'font'
     >;
   };
-  contentPanel?: {
+  desktopRightGridPanel?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing'
     >;
   };
-  sublistLinks?: {
+  dropdownSubmenuLinks?: {
     decoration?: Element.Decoration.PickedAttributes<
       'font'
     >;
   };
-  ctaButton?: {
+  dropdownCtaButtons?: {
     decoration?: Element.Decoration.PickedAttributes<
       'background' | 'border' | 'spacing' | 'boxShadow' | 'font'
     >;

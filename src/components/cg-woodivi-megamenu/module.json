@@ -42,7 +42,7 @@
         }
       }
     },
-    "navbar": {
+    "mainMenuBar": {
       "type": "object",
       "selector": "{{selector}} .cg-woodivi-navbar",
       "settings": {
@@ -54,7 +54,7 @@
         }
       }
     },
-    "navLinks": {
+    "mainMenuBarLinks": {
       "type": "object",
       "selector": "{{selector}} .cg-woodivi-nav-link",
       "settings": {
@@ -62,8 +62,8 @@
           "font": {
             "component": {
               "props": {
-                "groupLabel": "Main Menu Link Text",
-                "fieldLabel": "Link"
+                "groupLabel": "Main Menu Bar Link Text",
+                "fieldLabel": "Menu Bar Link"
               }
             }
           },
@@ -73,7 +73,7 @@
         }
       }
     },
-    "dropdownPanel": {
+    "megamenuDropdownPanel": {
       "type": "object",
       "selector": "{{selector}} .cg-woodivi-dropdown-panel",
       "settings": {
@@ -85,7 +85,7 @@
         }
       }
     },
-    "sidebar": {
+    "dropdownLeftSidebar": {
       "type": "object",
       "selector": "{{selector}} .cg-woodivi-sidebar",
       "settings": {
@@ -96,7 +96,7 @@
         }
       }
     },
-    "sidebarLinks": {
+    "dropdownSidebarLinks": {
       "type": "object",
       "selector": "{{selector}} .cg-woodivi-sidebar-item a",
       "settings": {
@@ -115,7 +115,7 @@
         }
       }
     },
-    "contentPanel": {
+    "desktopRightGridPanel": {
       "type": "object",
       "selector": "{{selector}} .cg-woodivi-content-panels",
       "settings": {
@@ -126,9 +126,9 @@
         }
       }
     },
-    "sublistLinks": {
+    "dropdownSubmenuLinks": {
       "type": "object",
-      "selector": "{{selector}} .cg-woodivi-sublist-item a",
+      "selector": "{{selector}} .cg-woodivi-sublist-item a, {{selector}} .cg-woodivi-mobile-sublist-item a",
       "settings": {
         "decoration": {
           "font": {
@@ -142,16 +142,16 @@
         }
       }
     },
-    "ctaButton": {
+    "dropdownCtaButtons": {
       "type": "object",
-      "selector": "{{selector}} .cg-woodivi-cta-btn",
+      "selector": "{{selector}} .cg-woodivi-cta-btn, {{selector}} .cg-woodivi-sidebar-footer-btn, {{selector}} .cg-woodivi-mobile-cta-link",
       "settings": {
         "decoration": {
           "font": {
             "component": {
               "props": {
-                "groupLabel": "CTA Button Text",
-                "fieldLabel": "CTA Button"
+                "groupLabel": "Cta Button Text",
+                "fieldLabel": "Cta Button"
               }
             }
           },

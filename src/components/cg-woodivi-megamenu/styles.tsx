@@ -29,35 +29,35 @@ export const ModuleStyles = ({
       })}
 
       {elements.style({
-        attrName: 'navbar',
+        attrName: 'mainMenuBar',
       })}
 
       {elements.style({
-        attrName: 'navLinks',
+        attrName: 'mainMenuBarLinks',
       })}
 
       {elements.style({
-        attrName: 'dropdownPanel',
+        attrName: 'megamenuDropdownPanel',
       })}
 
       {elements.style({
-        attrName: 'sidebar',
+        attrName: 'dropdownLeftSidebar',
       })}
 
       {elements.style({
-        attrName: 'sidebarLinks',
+        attrName: 'dropdownSidebarLinks',
       })}
 
       {elements.style({
-        attrName: 'contentPanel',
+        attrName: 'desktopRightGridPanel',
       })}
 
       {elements.style({
-        attrName: 'sublistLinks',
+        attrName: 'dropdownSubmenuLinks',
       })}
 
       {elements.style({
-        attrName: 'ctaButton',
+        attrName: 'dropdownCtaButtons',
       })}
 
       <CssStyle
