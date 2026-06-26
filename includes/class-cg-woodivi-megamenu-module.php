@@ -119,14 +119,14 @@ class CGWooDiviMegamenuModule implements DependencyInterface {
 							],
 						]
 					),
-					$elements->style( [ 'attrName' => 'navbar' ] ),
-					$elements->style( [ 'attrName' => 'navLinks' ] ),
-					$elements->style( [ 'attrName' => 'dropdownPanel' ] ),
-					$elements->style( [ 'attrName' => 'sidebar' ] ),
-					$elements->style( [ 'attrName' => 'sidebarLinks' ] ),
-					$elements->style( [ 'attrName' => 'contentPanel' ] ),
-					$elements->style( [ 'attrName' => 'sublistLinks' ] ),
-					$elements->style( [ 'attrName' => 'ctaButton' ] ),
+					$elements->style( [ 'attrName' => 'mainMenuBar' ] ),
+					$elements->style( [ 'attrName' => 'mainMenuBarLinks' ] ),
+					$elements->style( [ 'attrName' => 'megamenuDropdownPanel' ] ),
+					$elements->style( [ 'attrName' => 'dropdownLeftSidebar' ] ),
+					$elements->style( [ 'attrName' => 'dropdownSidebarLinks' ] ),
+					$elements->style( [ 'attrName' => 'desktopRightGridPanel' ] ),
+					$elements->style( [ 'attrName' => 'dropdownSubmenuLinks' ] ),
+					$elements->style( [ 'attrName' => 'dropdownCtaButtons' ] ),
 				],
 			]
 		);
