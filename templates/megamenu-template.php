@@ -190,13 +190,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 										</div>
 									</li>
 								<?php endforeach; ?>
-								
-								<li class="cg-woodivi-sidebar-footer-link">
-									<a href="<?php echo esc_url( get_post_type_archive_link( 'product' ) ); ?>">
-										<?php esc_html_e( 'SHOP ALL BRANDS', 'cg-woodivi-category-brand-megamenu' ); ?>
-									</a>
-								</li>
 							</ul>
+							<div class="cg-woodivi-sidebar-footer">
+								<a href="<?php echo esc_url( get_post_type_archive_link( 'product' ) ); ?>" class="cg-woodivi-sidebar-footer-btn">
+									<?php esc_html_e( 'SHOP ALL BRANDS', 'cg-woodivi-category-brand-megamenu' ); ?>
+								</a>
+							</div>
 						</div>
 						
 						<!-- Right Panel (Brand Categories Grid) -->

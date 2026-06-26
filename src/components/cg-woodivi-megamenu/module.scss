@@ -149,13 +149,17 @@
 	padding: 0;
 	margin: 0;
 	border-right: 1px solid rgba(255,255,255,0.05);
-	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .cg-woodivi-sidebar-list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	flex: 1 1 auto;
+	overflow-y: auto;
 }
 
 .cg-woodivi-sidebar-item {
@@ -205,17 +209,46 @@
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.cg-woodivi-sidebar-footer-link a {
-	color: var(--cg-text-light);
-	font-weight: bold;
-	background-color: rgba(0,0,0,0.1);
+.cg-woodivi-sidebar-footer {
+	padding: 15px 20px;
+	background-color: var(--cg-darker-bg);
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	display: flex;
 	justify-content: center;
-	text-align: center;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	flex-shrink: 0;
 }
 
-.cg-woodivi-sidebar-footer-link a:hover {
+.cg-woodivi-sidebar-footer-btn {
 	background-color: var(--cg-accent);
-	color: var(--cg-darker-bg);
+	color: var(--cg-darker-bg) !important;
+	padding: 10px 20px;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: var(--cg-border-radius);
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	box-shadow: 0 4px 10px rgba(255, 156, 0, 0.2);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	text-align: center;
+	letter-spacing: 0.5px;
+
+	&:hover {
+		background-color: #fff;
+		color: var(--cg-darker-bg) !important;
+		box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+		transform: translateY(-1px);
+	}
+	
+	&:active {
+		transform: translateY(0);
+	}
 }
 
 @media screen and (min-width: 981px) {
@@ -517,6 +550,25 @@
 	/* Ensure dropdown panel background matches mobile theme completely */
 	.cg-woodivi-dropdown-panel {
 		background-color: var(--cg-sidebar-bg) !important;
+	}
+
+	/* Mobile Sidebar Fixed Footer overrides */
+	.cg-woodivi-sidebar-footer {
+		padding: 15px !important;
+		background-color: transparent !important;
+		border-top: none !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
+	}
+
+	.cg-woodivi-sidebar-footer-btn {
+		padding: 12px 20px !important;
+		box-shadow: none !important;
+		
+		&:hover {
+			transform: none !important;
+			box-shadow: none !important;
+		}
 	}
 }
 
