@@ -26,6 +26,30 @@ export const CGWooDiviMegamenuEdit = (props: CGWooDiviMegamenuEditProps): ReactE
       {elements.styleComponents({
         attrName: 'module',
       })}
+      {elements.styleComponents({
+        attrName: 'mainMenuBar',
+      })}
+      {elements.styleComponents({
+        attrName: 'mainMenuBarLinks',
+      })}
+      {elements.styleComponents({
+        attrName: 'megamenuDropdownPanel',
+      })}
+      {elements.styleComponents({
+        attrName: 'dropdownLeftSidebar',
+      })}
+      {elements.styleComponents({
+        attrName: 'dropdownSidebarLinks',
+      })}
+      {elements.styleComponents({
+        attrName: 'desktopRightGridPanel',
+      })}
+      {elements.styleComponents({
+        attrName: 'dropdownSubmenuLinks',
+      })}
+      {elements.styleComponents({
+        attrName: 'dropdownCtaButtons',
+      })}
       
       <div 
         className="cg-woodivi-megamenu-vb-placeholder"
