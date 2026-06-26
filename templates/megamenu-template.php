@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												<!-- Shop All CTA -->
 												<li class="cg-woodivi-mobile-sublist-item cg-woodivi-mobile-cta">
 													<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="cg-woodivi-mobile-cta-link">
-														<?php echo esc_html( sprintf( 'SHOP ALL %s', strtoupper( $parent->name ) ) ); ?>
+														<?php echo esc_html( sprintf( 'SHOP ALL %s', strtoupper( html_entity_decode( $parent->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
 													</a>
 												</li>
 											</ul>
@@ -120,7 +120,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</div>
 									<div class="cg-woodivi-panel-footer">
 										<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="cg-woodivi-cta-btn">
-											<?php echo esc_html( sprintf( 'SHOP ALL %s', strtoupper( $parent->name ) ) ); ?>
+											<?php echo esc_html( sprintf( 'SHOP ALL %s', strtoupper( html_entity_decode( $parent->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
 										</a>
 									</div>
 								</div>
@@ -183,7 +183,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												<!-- Brand Store CTA -->
 												<li class="cg-woodivi-mobile-sublist-item cg-woodivi-mobile-cta">
 													<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="cg-woodivi-mobile-cta-link">
-														<?php echo esc_html( sprintf( '%s STORE', strtoupper( $brand->name ) ) ); ?>
+														<?php echo esc_html( sprintf( '%s STORE', strtoupper( html_entity_decode( $brand->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
 													</a>
 												</li>
 											</ul>
@@ -245,7 +245,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									</div>
 									<div class="cg-woodivi-panel-footer">
 										<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="cg-woodivi-cta-btn">
-											<?php echo esc_html( sprintf( '%s STORE', strtoupper( $brand->name ) ) ); ?>
+											<?php echo esc_html( sprintf( '%s STORE', strtoupper( html_entity_decode( $brand->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
 										</a>
 									</div>
 								</div>
