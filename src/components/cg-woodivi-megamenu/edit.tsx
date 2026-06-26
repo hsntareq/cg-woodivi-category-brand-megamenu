@@ -51,33 +51,26 @@ export const CGWooDiviMegamenuEdit = (props: CGWooDiviMegamenuEditProps): ReactE
         attrName: 'dropdownCtaButtons',
       })}
       
-      <div 
-        className="cg-woodivi-megamenu-vb-placeholder"
-        style={{
-          width: 'auto',
-          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-          backgroundColor: '#1c2b39',
-          color: '#ffffff',
-          display: 'inline-flex',
-          alignItems: 'center',
-          padding: '0 15px',
-          height: '50px',
-          boxSizing: 'border-box',
-          borderRadius: '4px',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-        }}
-      >
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-          <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', color: '#ff9c00', cursor: 'default' }}>
-            SHOP BY CATEGORY <span style={{ fontSize: '10px', marginLeft: '5px' }}>▼</span>
-          </div>
-          <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', color: '#ffffff', cursor: 'default' }}>
-            SHOP BY BRAND <span style={{ fontSize: '10px', marginLeft: '5px' }}>▶</span>
-          </div>
-          <div style={{ fontSize: '11px', color: '#8b9da9', fontStyle: 'italic', marginLeft: '10px' }}>
-            (Visual Builder Preview Mode)
-          </div>
-        </div>
+      <div className="cg-woodivi-megamenu-wrapper">
+        <nav className="cg-woodivi-navbar">
+          <ul className="cg-woodivi-nav-list">
+            <li className="cg-woodivi-nav-item has-dropdown">
+              <a href="#" className="cg-woodivi-nav-link" onClick={(e) => e.preventDefault()}>
+                SHOP BY CATEGORY <span className="cg-arrow cg-arrow-down">&#9662;</span>
+              </a>
+            </li>
+            <li className="cg-woodivi-nav-item has-dropdown">
+              <a href="#" className="cg-woodivi-nav-link" onClick={(e) => e.preventDefault()}>
+                SHOP BY BRAND <span className="cg-arrow cg-arrow-right">&#9656;</span>
+              </a>
+            </li>
+            <li className="cg-woodivi-nav-item" style={{ display: 'inline-flex', alignItems: 'center', marginLeft: '20px', height: '100%' }}>
+              <span style={{ fontSize: '11px', color: '#8b9da9', fontStyle: 'italic', opacity: 0.7, textTransform: 'none', cursor: 'default' }}>
+                (Visual Builder Preview Mode)
+              </span>
+            </li>
+          </ul>
+        </nav>
       </div>
     </ModuleContainer>
   );
