@@ -368,7 +368,7 @@
 	}
 
 	/* Show Panel when Active */
-	&.has-dropdown.active .cg-woodivi-dropdown-panel {
+	.cg-woodivi-nav-item.has-dropdown.active .cg-woodivi-dropdown-panel {
 		opacity: 1;
 		visibility: visible;
 		transform: translateY(0);
