@@ -32,6 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								$first_cat = true;
 								foreach ( $categories_tree as $parent_id => $data ) : 
 									$parent = $data['term'];
+									$children = $data['children'];
 									$classes = 'cg-woodivi-sidebar-item';
 									if ( $first_cat ) {
 										$classes .= ' active';
@@ -43,6 +44,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<?php echo esc_html( $parent->name ); ?>
 											<span class="cg-chevron">&rsaquo;</span>
 										</a>
+										
+										<!-- Mobile Inline Subcategories Accordion -->
+										<div class="cg-woodivi-mobile-inline-sublist">
+											<ul class="cg-woodivi-mobile-sublist">
+												<?php if ( ! empty( $children ) ) : ?>
+													<?php foreach ( $children as $child ) : ?>
+														<li class="cg-woodivi-mobile-sublist-item">
+															<a href="<?php echo esc_url( get_term_link( $child ) ); ?>">
+																<?php echo esc_html( $child->name ); ?>
+															</a>
+														</li>
+													<?php endforeach; ?>
+												<?php else : ?>
+													<li class="cg-woodivi-mobile-no-data">
+														<?php esc_html_e( 'No subcategories available.', 'cg-woodivi-category-brand-megamenu' ); ?>
+													</li>
+												<?php endif; ?>
+												
+												<!-- Shop All CTA -->
+												<li class="cg-woodivi-mobile-sublist-item cg-woodivi-mobile-cta">
+													<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="cg-woodivi-mobile-cta-link">
+														<?php echo esc_html( sprintf( 'SHOP ALL %s', strtoupper( $parent->name ) ) ); ?>
+													</a>
+												</li>
+											</ul>
+										</div>
 									</li>
 								<?php endforeach; ?>
 							</ul>
@@ -126,12 +153,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 										$classes .= ' active';
 										$first_brand = false;
 									}
+									
+									// Get categories under this brand for mobile inline list
+									$brand_cats = \CGWooDiviMegamenu\Plugin::get_brand_categories( $brand->term_id );
 									?>
 									<li class="<?php echo esc_attr( $classes ); ?>" data-id="<?php echo esc_attr( $brand->term_id ); ?>">
 										<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>">
 											<?php echo esc_html( $brand->name ); ?>
 											<span class="cg-chevron">&rsaquo;</span>
 										</a>
+										
+										<!-- Mobile Inline Brand Categories Accordion -->
+										<div class="cg-woodivi-mobile-inline-sublist">
+											<ul class="cg-woodivi-mobile-sublist">
+												<?php if ( ! empty( $brand_cats ) ) : ?>
+													<?php foreach ( $brand_cats as $cat ) : ?>
+														<li class="cg-woodivi-mobile-sublist-item">
+															<a href="<?php echo esc_url( get_term_link( (int) $cat->term_id, 'product_cat' ) ); ?>?filter_brand=<?php echo esc_attr( $brand->slug ); ?>">
+																<?php echo esc_html( $cat->name ); ?>
+															</a>
+														</li>
+													<?php endforeach; ?>
+												<?php else : ?>
+													<li class="cg-woodivi-mobile-no-data">
+														<?php esc_html_e( 'No categories found for this brand.', 'cg-woodivi-category-brand-megamenu' ); ?>
+													</li>
+												<?php endif; ?>
+												
+												<!-- Brand Store CTA -->
+												<li class="cg-woodivi-mobile-sublist-item cg-woodivi-mobile-cta">
+													<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="cg-woodivi-mobile-cta-link">
+														<?php echo esc_html( sprintf( '%s STORE', strtoupper( $brand->name ) ) ); ?>
+													</a>
+												</li>
+											</ul>
+										</div>
 									</li>
 								<?php endforeach; ?>
 								

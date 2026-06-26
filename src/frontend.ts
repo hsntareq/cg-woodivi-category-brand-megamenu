@@ -87,34 +87,89 @@ const initMegamenu = () => {
 
     // Position active dropdowns on window resize
     $(window).on('resize', function() {
+      if (window.innerWidth <= 980) {
+        // Reset/collapse accordion items when transitioning to mobile
+        $('.cg-woodivi-sidebar-item').removeClass('active');
+        $('.cg-woodivi-mobile-inline-sublist').hide();
+      } else {
+        // Restore first item as active on desktop if none are active
+        $('.cg-woodivi-dropdown-container').each(function() {
+          const $container = $(this);
+          if (!$container.find('.cg-woodivi-sidebar-item.active').length) {
+            const $firstItem = $container.find('.cg-woodivi-sidebar-item').first();
+            $firstItem.addClass('active');
+            const parentId = $firstItem.data('id');
+            $container.find('.cg-woodivi-content-panel').removeClass('active');
+            $container.find('.cg-woodivi-content-panel[data-id="' + parentId + '"]').addClass('active');
+          }
+        });
+      }
+
       $('.cg-woodivi-nav-item.has-dropdown.active').each(function(this: HTMLElement) {
         positionDropdown($(this));
       });
     });
 
-    // Hover or click handler for sidebar items (works for mouseover on desktop and click/tap on touch devices)
+    // Hover or click handler for sidebar items
     $('.cg-woodivi-sidebar-item').on('mouseenter click', function(this: HTMLElement, e: any) {
-      if (e.type === 'click') {
+      const isMobile = window.innerWidth <= 980;
+
+      if (isMobile) {
+        if (e.type === 'mouseenter') {
+          return; // Ignore hover/mouseenter events on mobile
+        }
         e.preventDefault();
         e.stopPropagation();
+
+        const $item = $(this);
+        const $sublist = $item.find('.cg-woodivi-mobile-inline-sublist');
+        const $sidebar = $item.closest('.cg-woodivi-sidebar');
+
+        if ($item.hasClass('active')) {
+          $sublist.slideUp(300);
+          $item.removeClass('active');
+        } else {
+          // Collapse other active accordion items in the same sidebar
+          $sidebar.find('.cg-woodivi-sidebar-item.active').each(function() {
+            const $otherItem = $(this);
+            $otherItem.removeClass('active');
+            $otherItem.find('.cg-woodivi-mobile-inline-sublist').slideUp(300);
+          });
+
+          // Expand clicked accordion item
+          $item.addClass('active');
+          $sublist.slideDown(300);
+        }
+      } else {
+        // Desktop behavior
+        if (e.type === 'click') {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
+        const $item = $(this);
+        const parentId = $item.data('id');
+        const $container = $item.closest('.cg-woodivi-dropdown-container');
+        
+        // Switch active sidebar item
+        $container.find('.cg-woodivi-sidebar-item').removeClass('active');
+        $item.addClass('active');
+
+        // Switch active content panel
+        const $panels = $container.find('.cg-woodivi-content-panel');
+        $panels.removeClass('active');
+        $panels.filter('[data-id="' + parentId + '"]').addClass('active');
       }
-
-      const $item = $(this);
-      const parentId = $item.data('id');
-      const $container = $item.closest('.cg-woodivi-dropdown-container');
-      
-      // Switch active sidebar item
-      $container.find('.cg-woodivi-sidebar-item').removeClass('active');
-      $item.addClass('active');
-
-      // Switch active content panel
-      const $panels = $container.find('.cg-woodivi-content-panel');
-      $panels.removeClass('active');
-      $panels.filter('[data-id="' + parentId + '"]').addClass('active');
     });
   };
 
   initDesktopMegamenu();
+
+  // Collapse accordions on initial page load if viewport is mobile
+  if (window.innerWidth <= 980) {
+    $('.cg-woodivi-sidebar-item').removeClass('active');
+    $('.cg-woodivi-mobile-inline-sublist').hide();
+  }
 };
 
 if (document.readyState === 'loading') {

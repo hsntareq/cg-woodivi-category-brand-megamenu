@@ -175,8 +175,8 @@
 	transition: var(--cg-transition);
 }
 
-.cg-woodivi-sidebar-item:hover a,
-.cg-woodivi-sidebar-item.active a {
+.cg-woodivi-sidebar-item:hover > a,
+.cg-woodivi-sidebar-item.active > a {
 	color: var(--cg-accent);
 	background-color: var(--cg-darker-bg);
 	padding-left: 25px;
@@ -189,8 +189,8 @@
 	transition: transform 0.2s ease;
 }
 
-.cg-woodivi-sidebar-item:hover .cg-chevron,
-.cg-woodivi-sidebar-item.active .cg-chevron {
+.cg-woodivi-sidebar-item:hover > a .cg-chevron,
+.cg-woodivi-sidebar-item.active > a .cg-chevron {
 	opacity: 1;
 	transform: translateX(3px);
 }
@@ -216,6 +216,13 @@
 .cg-woodivi-sidebar-footer-link a:hover {
 	background-color: var(--cg-accent);
 	color: var(--cg-darker-bg);
+}
+
+@media screen and (min-width: 981px) {
+	/* Mobile Inline Accordion hidden on Desktop */
+	.cg-woodivi-mobile-inline-sublist {
+		display: none !important;
+	}
 }
 
 /* Content Panels */
@@ -395,42 +402,109 @@
 		width: 100%;
 		border-right: none;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-		max-height: 250px;
-		overflow-y: auto;
+		max-height: none;
+		overflow-y: visible;
 	}
 
-	.cg-woodivi-sidebar-item a {
+	.cg-woodivi-sidebar-item > a {
 		padding: 12px 20px;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.02);
 	}
 
-	.cg-woodivi-sidebar-item:hover a,
-	.cg-woodivi-sidebar-item.active a {
+	.cg-woodivi-sidebar-item:hover > a,
+	.cg-woodivi-sidebar-item.active > a {
 		padding-left: 25px;
 	}
 
-	/* Content Panels (Subcategories List) */
+	/* Chevron Rotation on Mobile */
+	.cg-woodivi-sidebar-item .cg-chevron {
+		transition: transform 0.3s ease;
+		transform: rotate(0deg);
+	}
+	.cg-woodivi-sidebar-item.active > a .cg-chevron {
+		transform: rotate(90deg) !important;
+		opacity: 1;
+	}
+
+	/* Hide right-side content panels completely on mobile */
 	.cg-woodivi-content-panels {
-		width: 100%;
-		padding: 20px;
-		box-sizing: border-box;
-		max-height: none;
-		overflow-y: visible;
-		background-color: var(--cg-darker-bg);
+		display: none !important;
 	}
 
-	.cg-woodivi-grid {
-		gap: 15px;
+	/* Mobile Accordion Inline Sublist */
+	.cg-woodivi-mobile-inline-sublist {
+		display: none; /* Managed by jQuery slideToggle, overrides the desktop !important */
+		background-color: rgba(0, 0, 0, 0.2);
+		border-top: 1px solid rgba(255, 255, 255, 0.03);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+		padding: 5px 0;
 	}
 
-	.cg-woodivi-grid.cols-4,
-	.cg-woodivi-grid.cols-3 {
-		grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+	.cg-woodivi-mobile-sublist {
+		list-style: none !important;
+		padding: 0 !important;
+		margin: 0 !important;
 	}
 
-	.cg-woodivi-panel-footer {
-		margin-top: 20px;
-		justify-content: center;
+	.cg-woodivi-mobile-sublist-item {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+		list-style: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		
+		&:last-child {
+			border-bottom: none;
+		}
+
+		a {
+			display: block !important;
+			padding: 10px 30px !important; /* Indented for clear hierarchy */
+			color: rgba(255, 255, 255, 0.7) !important;
+			text-decoration: none !important;
+			font-size: 12px !important;
+			font-weight: 500 !important;
+			text-transform: uppercase !important;
+			background-color: transparent !important;
+			transition: var(--cg-transition) !important;
+			text-align: left !important;
+			justify-content: flex-start !important;
+			border-bottom: none !important;
+
+			&:hover {
+				color: var(--cg-accent) !important;
+				padding-left: 35px !important;
+			}
+		}
+	}
+
+	.cg-woodivi-mobile-no-data {
+		padding: 12px 30px;
+		color: var(--cg-text-muted);
+		font-size: 11px;
+		font-style: italic;
+		list-style: none !important;
+	}
+
+	.cg-woodivi-mobile-cta {
+		border-bottom: none;
+		
+		a.cg-woodivi-mobile-cta-link {
+			color: var(--cg-accent) !important;
+			font-weight: 700 !important;
+			font-size: 11px !important;
+			letter-spacing: 0.5px !important;
+			border-bottom: 1px solid var(--cg-accent) !important;
+			display: inline-block !important;
+			padding: 10px 0 !important;
+			margin-left: 30px !important;
+			width: auto !important;
+			
+			&:hover {
+				color: #fff !important;
+				border-bottom-color: #fff !important;
+				padding-left: 0 !important;
+			}
+		}
 	}
 }
 
