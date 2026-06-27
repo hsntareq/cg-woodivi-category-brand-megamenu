@@ -91,19 +91,35 @@ class Seeder {
 			}
 		}
 
-		// 2. Seed Brands
+		// 2. Seed Brands (Hierarchical)
 		$brands_data = array(
-			'Milwaukee', 'DeWalt', 'Makita', 'Paslode', 'Stanley', 
-			'Hikoki', 'Spit', 'Everbuild', 'Forgefix', 'N-Durance'
+			'Milwaukee' => array( 'Milwaukee Cordless', 'Milwaukee Hand Tools', 'Milwaukee Accessories' ),
+			'DeWalt'    => array( 'DeWalt XR Cordless', 'DeWalt FlexVolt', 'DeWalt Hand Tools', 'DeWalt Accessories' ),
+			'Makita'    => array( 'Makita 18V LXT', 'Makita 40V XGT', 'Makita Power Tools' ),
+			'Paslode'   => array( 'Paslode Cordless', 'Paslode Gas Nails', 'Paslode Accessories' ),
+			'Stanley'   => array( 'Stanley Hand Tools', 'Stanley FatMax', 'Stanley Storage' ),
+			'Hikoki'    => array( 'Hikoki Cordless', 'Hikoki Power Tools' ),
+			'Spit'      => array( 'Spit Concrete Nails', 'Spit Anchors' ),
+			'Everbuild' => array( 'Everbuild Sealants', 'Everbuild Adhesives', 'Everbuild Tapes' ),
+			'Forgefix'  => array( 'Forgefix Screws', 'Forgefix Nails', 'Forgefix Wall Plugs' ),
+			'N-Durance' => array( 'N-Durance Workwear', 'N-Durance Boots', 'N-Durance Gloves' )
 		);
 
 		$brand_term_ids = array();
 
-		foreach ( $brands_data as $brand_name ) {
-			$brand_id = self::get_or_create_term( $brand_name, 'product_brand', 0 );
-			if ( ! is_wp_error( $brand_id ) ) {
-				$created_brands[] = $brand_id;
-				$brand_term_ids[ $brand_name ] = $brand_id;
+		foreach ( $brands_data as $parent_name => $children ) {
+			$parent_id = self::get_or_create_term( $parent_name, 'product_brand', 0 );
+			if ( ! is_wp_error( $parent_id ) ) {
+				$created_brands[] = $parent_id;
+				$brand_term_ids[ $parent_name ] = $parent_id;
+
+				foreach ( $children as $child_name ) {
+					$child_id = self::get_or_create_term( $child_name, 'product_brand', $parent_id );
+					if ( ! is_wp_error( $child_id ) ) {
+						$created_brands[] = $child_id;
+						$brand_term_ids[ $child_name ] = $child_id;
+					}
+				}
 			}
 		}
 

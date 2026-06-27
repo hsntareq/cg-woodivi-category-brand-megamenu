@@ -3,7 +3,7 @@
  * Plugin Name: CG WooDivi Category Brand Megamenu
  * Plugin URI: https://github.com/hsntareq/cg-woodivi-category-brand-megamenu
  * Description: A premium, dynamic WooCommerce megamenu plugin with Category & Brand lists, designed like Toolden.co.uk. Compatible with Divi Builder.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Hasan Tareq
  * Author URI: https://github.com/hsntareq
  * License: GPL-2.0-or-later
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'CG_WOODIVI_MEGAMENU_VERSION', '1.1.1' );
+define( 'CG_WOODIVI_MEGAMENU_VERSION', '1.1.2' );
 define( 'CG_WOODIVI_MEGAMENU_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CG_WOODIVI_MEGAMENU_URL', plugin_dir_url( __FILE__ ) );
 define( 'CG_WOODIVI_MEGAMENU_BASENAME', plugin_basename( __FILE__ ) );

@@ -147,43 +147,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<ul class="cg-woodivi-sidebar-list">
 								<?php 
 								$first_brand = true;
-								foreach ( $brands as $brand ) : 
+								foreach ( $brands_tree as $parent_id => $data ) : 
+									$parent = $data['term'];
+									$children = $data['children'];
 									$classes = 'cg-woodivi-sidebar-item';
 									if ( $first_brand ) {
 										$classes .= ' active';
 										$first_brand = false;
 									}
-									
-									// Get categories under this brand for mobile inline list
-									$brand_cats = \CGWooDiviMegamenu\Plugin::get_brand_categories( $brand->term_id );
 									?>
-									<li class="<?php echo esc_attr( $classes ); ?>" data-id="<?php echo esc_attr( $brand->term_id ); ?>">
-										<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>">
-											<?php echo esc_html( $brand->name ); ?>
+									<li class="<?php echo esc_attr( $classes ); ?>" data-id="<?php echo esc_attr( $parent_id ); ?>">
+										<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>">
+											<?php echo esc_html( $parent->name ); ?>
 											<span class="cg-chevron">&rsaquo;</span>
 										</a>
 										
-										<!-- Mobile Inline Brand Categories Accordion -->
+										<!-- Mobile Inline Brand Sub-brands Accordion -->
 										<div class="cg-woodivi-mobile-inline-sublist">
 											<ul class="cg-woodivi-mobile-sublist">
-												<?php if ( ! empty( $brand_cats ) ) : ?>
-													<?php foreach ( $brand_cats as $cat ) : ?>
+												<?php if ( ! empty( $children ) ) : ?>
+													<?php foreach ( $children as $child ) : ?>
 														<li class="cg-woodivi-mobile-sublist-item">
-															<a href="<?php echo esc_url( get_term_link( (int) $cat->term_id, 'product_cat' ) ); ?>?filter_brand=<?php echo esc_attr( $brand->slug ); ?>">
-																<?php echo esc_html( $cat->name ); ?>
+															<a href="<?php echo esc_url( get_term_link( $child ) ); ?>">
+																<?php echo esc_html( $child->name ); ?>
 															</a>
 														</li>
 													<?php endforeach; ?>
 												<?php else : ?>
 													<li class="cg-woodivi-mobile-no-data">
-														<?php esc_html_e( 'No categories found for this brand.', 'cg-woodivi-category-brand-megamenu' ); ?>
+														<?php esc_html_e( 'No sub-brands available.', 'cg-woodivi-category-brand-megamenu' ); ?>
 													</li>
 												<?php endif; ?>
 												
 												<!-- Brand Store CTA -->
 												<li class="cg-woodivi-mobile-sublist-item cg-woodivi-mobile-cta">
-													<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="cg-woodivi-mobile-cta-link">
-														<?php echo esc_html( sprintf( '%s STORE', strtoupper( html_entity_decode( $brand->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
+													<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="cg-woodivi-mobile-cta-link">
+														<?php echo esc_html( sprintf( '%s STORE', strtoupper( html_entity_decode( $parent->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
 													</a>
 												</li>
 											</ul>
@@ -198,38 +197,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 							</div>
 						</div>
 						
-						<!-- Right Panel (Brand Categories Grid) -->
+						<!-- Right Panel (Sub-brands Grid) -->
 						<div class="cg-woodivi-content-panels">
 							<?php 
 							$first_brand = true;
-							foreach ( $brands as $brand ) : 
+							foreach ( $brands_tree as $parent_id => $data ) : 
+								$parent = $data['term'];
+								$children = $data['children'];
 								$classes = 'cg-woodivi-content-panel';
 								if ( $first_brand ) {
 									$classes .= ' active';
 									$first_brand = false;
 								}
 								
-								// Get categories under this brand
-								$brand_cats = \CGWooDiviMegamenu\Plugin::get_brand_categories( $brand->term_id );
-								
 								// Chunk into up to 3 columns
 								$columns = array();
-								if ( ! empty( $brand_cats ) ) {
-									$total = count( $brand_cats );
+								if ( ! empty( $children ) ) {
+									$total = count( $children );
 									$items_per_col = ceil( $total / 3 );
-									$columns = array_chunk( $brand_cats, $items_per_col );
+									$columns = array_chunk( $children, $items_per_col );
 								}
 								?>
-								<div class="<?php echo esc_attr( $classes ); ?>" data-id="<?php echo esc_attr( $brand->term_id ); ?>">
+								<div class="<?php echo esc_attr( $classes ); ?>" data-id="<?php echo esc_attr( $parent_id ); ?>">
 									<div class="cg-woodivi-grid cols-3">
 										<?php if ( ! empty( $columns ) ) : ?>
 											<?php foreach ( $columns as $col ) : ?>
 												<div class="cg-woodivi-col">
 													<ul class="cg-woodivi-sublist">
-														<?php foreach ( $col as $cat ) : ?>
+														<?php foreach ( $col as $child ) : ?>
 															<li class="cg-woodivi-sublist-item">
-																<a href="<?php echo esc_url( get_term_link( (int) $cat->term_id, 'product_cat' ) ); ?>?filter_brand=<?php echo esc_attr( $brand->slug ); ?>">
-																	<?php echo esc_html( $cat->name ); ?>
+																<a href="<?php echo esc_url( get_term_link( $child ) ); ?>">
+																	<?php echo esc_html( $child->name ); ?>
 																</a>
 															</li>
 														<?php endforeach; ?>
@@ -238,13 +236,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 											<?php endforeach; ?>
 										<?php else : ?>
 											<div class="cg-woodivi-no-data">
-												<?php esc_html_e( 'No categories found for this brand.', 'cg-woodivi-category-brand-megamenu' ); ?>
+												<?php esc_html_e( 'No sub-brands available.', 'cg-woodivi-category-brand-megamenu' ); ?>
 											</div>
 										<?php endif; ?>
 									</div>
 									<div class="cg-woodivi-panel-footer">
-										<a href="<?php echo esc_url( get_term_link( $brand ) ); ?>" class="cg-woodivi-cta-btn">
-											<?php echo esc_html( sprintf( '%s STORE', strtoupper( html_entity_decode( $brand->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
+										<a href="<?php echo esc_url( get_term_link( $parent ) ); ?>" class="cg-woodivi-cta-btn">
+											<?php echo esc_html( sprintf( '%s STORE', strtoupper( html_entity_decode( $parent->name, ENT_QUOTES, 'UTF-8' ) ) ) ); ?>
 										</a>
 									</div>
 								</div>

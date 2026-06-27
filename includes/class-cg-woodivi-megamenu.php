@@ -409,8 +409,8 @@ class Plugin {
 		// Fetch Categories Tree
 		$categories_tree = $this->get_categories_tree();
 
-		// Fetch Brands
-		$brands = $this->get_brands_list();
+		// Fetch Brands Tree
+		$brands_tree = $this->get_brands_tree();
 
 		// Start Output Buffer
 		ob_start();
@@ -503,6 +503,64 @@ class Plugin {
 			return $term->term_id;
 		}
 		return $this->get_top_level_parent_id( $term->parent );
+	}
+
+	/**
+	 * Get WooCommerce Product Brands structured hierarchy
+	 *
+	 * @return array
+	 */
+	public function get_brands_tree() {
+		$terms = get_terms( array(
+			'taxonomy'   => 'product_brand',
+			'hide_empty' => false,
+		) );
+
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			return array();
+		}
+
+		$parents = array();
+		$children = array();
+
+		foreach ( $terms as $term ) {
+			if ( 0 === (int) $term->parent ) {
+				$parents[ $term->term_id ] = array(
+					'term'     => $term,
+					'children' => array(),
+				);
+			} else {
+				$children[] = $term;
+			}
+		}
+
+		// Map child terms to parent terms
+		foreach ( $children as $child ) {
+			if ( isset( $parents[ $child->parent ] ) ) {
+				$parents[ $child->parent ]['children'][] = $child;
+			} else {
+				$top_parent_id = $this->get_top_level_parent_id( $child->parent );
+				if ( $top_parent_id && isset( $parents[ $top_parent_id ] ) ) {
+					$parents[ $top_parent_id ]['children'][] = $child;
+				}
+			}
+		}
+
+		// Sort child arrays by name
+		foreach ( $parents as $id => $data ) {
+			if ( ! empty( $data['children'] ) ) {
+				usort( $parents[ $id ]['children'], function( $a, $b ) {
+					return strcmp( $a->name, $b->name );
+				} );
+			}
+		}
+
+		// Sort parents by name
+		uasort( $parents, function( $a, $b ) {
+			return strcmp( $a['term']->name, $b['term']->name );
+		} );
+
+		return $parents;
 	}
 
 	/**
