@@ -379,6 +379,9 @@
 	@media screen and (max-width: 980px) {
 		width: 100%;
 		display: block;
+		max-height: 100vh;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
 
 		.cg-woodivi-navbar {
 			display: block;
