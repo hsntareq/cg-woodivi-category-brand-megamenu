@@ -118,27 +118,61 @@ const initMegamenu = () => {
         if (e.type === 'mouseenter') {
           return; // Ignore hover/mouseenter events on mobile
         }
-        e.preventDefault();
-        e.stopPropagation();
+        
+        // If click is inside the sublist (e.g. child links), let it proceed naturally
+        if ($(e.target).closest('.cg-woodivi-mobile-inline-sublist').length > 0) {
+          return;
+        }
 
         const $item = $(this);
-        const $sublist = $item.find('.cg-woodivi-mobile-inline-sublist');
-        const $sidebar = $item.closest('.cg-woodivi-sidebar');
+        const $target = $(e.target);
+        const isChevron = $target.hasClass('cg-chevron') || $target.closest('.cg-chevron').length > 0;
 
-        if ($item.hasClass('active')) {
-          $sublist.slideUp(300);
-          $item.removeClass('active');
+        if (isChevron) {
+          e.preventDefault();
+          e.stopPropagation();
+          const $sublist = $item.find('.cg-woodivi-mobile-inline-sublist');
+          const $sidebar = $item.closest('.cg-woodivi-sidebar');
+
+          if ($item.hasClass('active')) {
+            $sublist.slideUp(300);
+            $item.removeClass('active');
+          } else {
+            // Collapse other active accordion items in the same sidebar
+            $sidebar.find('.cg-woodivi-sidebar-item.active').each(function() {
+              const $otherItem = $(this);
+              $otherItem.removeClass('active');
+              $otherItem.find('.cg-woodivi-mobile-inline-sublist').slideUp(300);
+            });
+
+            // Expand clicked accordion item
+            $item.addClass('active');
+            $sublist.slideDown(300);
+          }
         } else {
-          // Collapse other active accordion items in the same sidebar
-          $sidebar.find('.cg-woodivi-sidebar-item.active').each(function() {
-            const $otherItem = $(this);
-            $otherItem.removeClass('active');
-            $otherItem.find('.cg-woodivi-mobile-inline-sublist').slideUp(300);
-          });
+          // Clicked the link text itself
+          if ($item.hasClass('active')) {
+            // It is already active, so let the browser navigate to the link
+            return;
+          } else {
+            // It is not active, so expand the accordion and prevent navigation
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const $sublist = $item.find('.cg-woodivi-mobile-inline-sublist');
+            const $sidebar = $item.closest('.cg-woodivi-sidebar');
 
-          // Expand clicked accordion item
-          $item.addClass('active');
-          $sublist.slideDown(300);
+            // Collapse other active accordion items in the same sidebar
+            $sidebar.find('.cg-woodivi-sidebar-item.active').each(function() {
+              const $otherItem = $(this);
+              $otherItem.removeClass('active');
+              $otherItem.find('.cg-woodivi-mobile-inline-sublist').slideUp(300);
+            });
+
+            // Expand clicked accordion item
+            $item.addClass('active');
+            $sublist.slideDown(300);
+          }
         }
       } else {
         // Desktop behavior
